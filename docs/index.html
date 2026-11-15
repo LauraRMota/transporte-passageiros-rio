@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Evolução do Transporte de Passageiros no Município do Rio de Janeiro
+    </title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f5f5f5;
+            color: #222;
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            background-color: white;
+            padding: 50px;
+            border-radius: 10px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            margin-top: 45px;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 8px;
+        }
+
+        h3 {
+            margin-top: 30px;
+        }
+
+        p {
+            text-align: justify;
+        }
+
+        .autoria {
+            text-align: center;
+            color: #555;
+            margin-bottom: 35px;
+        }
+
+        .resumo {
+            background-color: #f8f9fa;
+            padding: 25px;
+            border-radius: 8px;
+        }
+
+        .palavras-chave {
+            margin-top: 15px;
+        }
+
+        .rq {
+            background-color: #f3f4f6;
+            border-left: 4px solid #555;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            color: #666;
+        }
+
+        pre {
+        background-color: #1f2937;
+        color: #f9fafb;
+        padding: 20px;
+        border-radius: 8px;
+        overflow-x: auto;
+        }
+
+        code {
+        font-family: Consolas, monospace;
+        }
+
+        figure {
+        margin: 35px 0;
+        text-align: center;
+        }
+
+        figure img {
+        width: 100%;
+        max-width: 900px;
+        height: auto;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        }
+
+        figcaption {
+        margin-top: 10px;
+        font-size: 0.9rem;
+        color: #666;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <main class="container">
+
+        <!-- CABEÇALHO -->
+
+        <header>
+
+            <h1>
+                Evolução do Transporte de Passageiros
+                no Município do Rio de Janeiro entre 1995 e 2025
+            </h1>
+
+            <div class="autoria">
+
+                <p style="text-align: center;">
+                    <strong>Isabelle Pinheiro Lovo</strong><br>
+                    <strong>Laura Ribeiro Mota</strong><br><br>
+                    
+                    Bacharelado em Sistemas de Informação<br>
+
+                    Disciplina: Linguagens de Programação<br>
+
+                    Docente: Alexandre Neves Louzada
+                </p>
+            </div>
+
+        </header>
+
+
+        <!-- RESUMO -->
+
+        <section>
+
+            <h2>Resumo</h2>
+
+            <div class="resumo">
+
+                <p>
+                    Este estudo analisa a evolução do movimento de passageiros
+                    em diferentes modais de transporte no Município do Rio de
+                    Janeiro entre 1995 e 2025, utilizando dados públicos
+                    disponibilizados pelo Data.Rio.
+                </p>
+
+                <p>
+                    A análise contempla os transportes por ônibus, metrô,
+                    trem, bonde, hidroviário e aeroviário. Os dados foram
+                    submetidos a um pipeline de extração, transformação e
+                    carregamento em Python, incluindo tratamento de
+                    cabeçalhos, padronização de variáveis, conversão de tipos
+                    e tratamento de valores ausentes.
+                </p>
+
+                <p>
+                    Foram aplicadas técnicas de estatística descritiva,
+                    análise temporal, participação relativa, correlação e
+                    medidas de dispersão. Os resultados evidenciam mudanças
+                    importantes na composição do transporte de passageiros,
+                    incluindo redução da participação relativa do transporte
+                    por ônibus, crescimento do metrô e uma forte ruptura nas
+                    séries em 2020, seguida por diferentes padrões de
+                    recuperação.
+                </p>
+
+                <p class="palavras-chave">
+                    <strong>Palavras-chave:</strong>
+                    mobilidade urbana; transporte público; passageiros;
+                    análise de dados; Rio de Janeiro; Python.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- INTRODUÇÃO -->
+
+        <section>
+
+            <h2>1. Introdução</h2>
+
+            <p>
+                A mobilidade urbana exerce papel fundamental no funcionamento
+                das grandes cidades, influenciando o acesso da população ao
+                trabalho, à educação, aos serviços e às atividades econômicas.
+                A análise histórica da utilização dos diferentes meios de
+                transporte permite identificar mudanças nos padrões de
+                deslocamento e compreender transformações na estrutura da
+                mobilidade urbana.
+            </p>
+
+            <p>
+                Neste trabalho, são analisados dados sobre o movimento de
+                passageiros nos principais modais de transporte do Município
+                do Rio de Janeiro entre 1995 e 2025. A base utilizada é
+                disponibilizada pelo Data.Rio e contempla ônibus, metrô,
+                trem, bonde, transporte hidroviário e transporte aeroviário.
+            </p>
+
+            <p>
+                A investigação foi estruturada a partir de três perguntas
+                de pesquisa:
+            </p>
+
+            <div class="rq">
+                <strong>RQ1 —</strong>
+                Como evoluiu o volume de passageiros nos diferentes
+                modais de transporte do Município do Rio de Janeiro
+                entre 1995 e 2025?
+            </div>
+
+            <div class="rq">
+                <strong>RQ2 —</strong>
+                Quais modais ganharam ou perderam participação relativa
+                no transporte de passageiros ao longo do período analisado?
+            </div>
+
+            <div class="rq">
+                <strong>RQ3 —</strong>
+                Como períodos de forte ruptura, especialmente o ano de
+                2020, afetaram os diferentes modais e como ocorreu a
+                recuperação posterior?
+            </div>
+
+        </section>
+
+
+        <!-- METODOLOGIA -->
+
+        <section>
+
+            <h2>2. Metodologia e Pipeline de Dados</h2>
+
+            <h3>2.1 Fonte dos dados</h3>
+
+            <p>
+                A base de dados utilizada neste estudo foi obtida no portal
+                Data.Rio, plataforma de dados abertos da Prefeitura da Cidade
+                do Rio de Janeiro.
+            </p>
+
+            <p>
+                O conjunto de dados apresenta informações anuais sobre o
+                movimento de passageiros em diferentes modais de transporte
+                no Município do Rio de Janeiro, abrangendo o período de
+                1995 a 2025.
+            </p>
+
+            <p>
+                Os modais contemplados são: ônibus, metrô, trem, bonde,
+                transporte hidroviário e transporte aeroviário. Os valores
+                disponibilizados na fonte original estão expressos em
+                milhares de passageiros.
+            </p>
+
+
+            <h3>2.2 Estrutura original da base</h3>
+
+            <p>
+                O arquivo original foi disponibilizado em formato de planilha
+                eletrônica e apresentava uma estrutura não diretamente tabular,
+                contendo títulos, cabeçalhos distribuídos em múltiplas linhas,
+                células mescladas, notas explicativas e informações de fonte
+                ao final da planilha.
+            </p>
+
+            <p>
+                Além disso, foram identificados valores representados por
+                reticências (<code>...</code>) na variável referente ao bonde,
+                indicando ausência de dado numérico para determinados anos.
+            </p>
+
+
+            <h3>2.3 Pipeline de ETL</h3>
+
+            <p>
+                Para garantir a reprodutibilidade do processo, foi desenvolvido
+                um pipeline de ETL em Python, localizado no arquivo
+                <code>src/etl.py</code>.
+            </p>
+
+            <p>
+                O processo foi dividido em três etapas principais:
+            </p>
+
+            <ul>
+                <li>
+                    <strong>Extração:</strong> leitura da planilha original
+                    armazenada em <code>data/raw/</code>.
+                </li>
+
+                <li>
+                    <strong>Transformação:</strong> remoção de linhas que não
+                    representavam observações, padronização dos nomes das
+                    variáveis, conversão dos tipos de dados e tratamento dos
+                    valores ausentes.
+                </li>
+
+                <li>
+                    <strong>Carregamento:</strong> exportação da base tratada
+                    para formatos abertos e reutilizáveis na pasta
+                    <code>data/processed/</code>.
+                </li>
+            </ul>
+
+
+            <h3>2.4 Tratamento dos dados</h3>
+
+            <p>
+                Inicialmente, foram removidas as linhas de títulos e cabeçalhos
+                que antecediam a tabela principal. Em seguida, as variáveis foram
+                padronizadas com nomes simples e sem caracteres especiais:
+                <code>ano</code>, <code>onibus</code>, <code>metro</code>,
+                <code>trem</code>, <code>bonde</code>,
+                <code>hidroviario</code> e <code>aeroviario</code>.
+            </p>
+
+            <p>
+                A coluna <code>ano</code> foi convertida para o tipo inteiro,
+                enquanto as variáveis referentes ao número de passageiros foram
+                convertidas para valores numéricos de ponto flutuante.
+            </p>
+
+            <p>
+                Os valores representados por <code>...</code> na variável
+                <code>bonde</code> foram convertidos para valores ausentes
+                (<code>NaN</code>). Esses valores não foram substituídos por
+                zero ou por estimativas, pois a fonte original indica ausência
+                de informação e não inexistência de passageiros.
+            </p>
+
+
+            <h3>2.5 Exemplo do processamento</h3>
+
+            <pre><code>
+            df = pd.read_excel(
+            caminho_arquivo,
+            skiprows=6
+            )
+
+            df.columns = [
+            "ano",
+            "onibus",
+            "metro",
+            "trem",
+            "bonde",
+            "hidroviario",
+            "aeroviario"
+            ]
+
+            df["ano"] = pd.to_numeric(
+            df["ano"],
+            errors="coerce"
+            )
+
+            df = df.dropna(
+            subset=["ano"]
+            )
+            </code></pre>
+
+            <p>
+                Após o tratamento, a base resultante passou a conter 31
+                observações, correspondentes aos anos de 1995 a 2025, e sete
+                variáveis.
+            </p>
+
+
+            <h3>2.6 Persistência dos dados processados</h3>
+
+            <p>
+                A versão tratada da base foi armazenada em dois formatos:
+                CSV e Parquet.
+            </p>
+
+            <p>
+                O formato CSV facilita a leitura e a interoperabilidade entre
+                diferentes ferramentas, enquanto o formato Parquet preserva
+                de forma eficiente os tipos de dados e é adequado para processos
+                analíticos reproduzíveis.
+            </p>
+
+        </section>
+
+
+        <!-- RESULTADOS -->
+
+        <section>
+
+        <section>
+
+            <h2>3. Resultados e Discussão</h2>
+
+
+            <h3>3.1 Evolução do volume de passageiros</h3>
+
+            <p>
+                A primeira pergunta de pesquisa buscou compreender como evoluiu
+                o volume de passageiros nos diferentes modais de transporte
+                do Município do Rio de Janeiro entre 1995 e 2025.
+            </p>
+
+            <p>
+                Em termos absolutos, o transporte por ônibus apresentou os
+                maiores volumes durante todo o período analisado. A série
+                demonstra redução entre o final da década de 1990 e meados
+                dos anos 2000, seguida por recuperação ao longo da década
+                seguinte.
+            </p>
+
+            <p>
+                O maior volume de passageiros transportados por ônibus foi
+                registrado em 2015, enquanto o menor valor da série ocorreu
+                em 2021.
+            </p>
+
+            <figure>
+                <img
+                    src="assets/evolucao_onibus.png"
+                    alt="Evolução do movimento de passageiros por ônibus entre 1995 e 2025"
+                >
+
+                <figcaption>
+                    Figura 1 — Evolução do movimento de passageiros por ônibus.
+                </figcaption>
+            </figure>
+
+            <p>
+                Metrô e trem também apresentaram crescimento relevante ao
+                longo de grande parte da série histórica. Ambos atingiram
+                seus maiores volumes em 2016, evidenciando expansão importante
+                da utilização dos sistemas ferroviários até meados da década
+                de 2010.
+            </p>
+
+            <p>
+                Os transportes hidroviário e aeroviário operaram em escalas
+                menores, enquanto o bonde apresentou os menores volumes
+                absolutos entre os modais analisados.
+            </p>
+
+            <figure>
+                <img
+                    src="assets/evolucao_modais.png"
+                    alt="Evolução do movimento de passageiros nos diferentes modais"
+                >
+
+                <figcaption>
+                    Figura 2 — Evolução dos passageiros por modal de transporte.
+                </figcaption>
+            </figure>
+
+
+            <h3>3.2 Evolução relativa dos modais</h3>
+
+            <p>
+                Como os modais apresentam escalas muito diferentes, também
+                foi calculado um índice de evolução relativa considerando
+                o ano de 1995 como base igual a 100.
+            </p>
+
+            <p>
+                Essa transformação permite comparar o crescimento ou a redução
+                proporcional de cada modal em relação ao seu próprio nível
+                inicial, independentemente do volume absoluto transportado.
+            </p>
+
+            <figure>
+                <img
+                    src="assets/indice_1995.png"
+                    alt="Evolução relativa dos modais considerando 1995 igual a 100"
+                >
+
+                <figcaption>
+                    Figura 3 — Evolução relativa dos modais, índice 1995 = 100.
+                </figcaption>
+            </figure>
+
+            <p>
+                O bonde apresentou as maiores variações relativas ao longo da
+                série. Esse resultado deve ser interpretado considerando seu
+                baixo volume absoluto, pois pequenas alterações numéricas
+                podem representar grandes variações percentuais.
+            </p>
+
+            <p>
+                O metrô e o transporte aeroviário também apresentaram crescimento
+                significativo em relação aos níveis de 1995, enquanto o transporte
+                por ônibus apresentou períodos prolongados abaixo do seu nível
+                inicial.
+            </p>
+
+
+            <h3>3.3 Participação relativa dos modais</h3>
+
+            <p>
+                A segunda pergunta de pesquisa analisou quais modais ganharam
+                ou perderam participação relativa ao longo do período.
+            </p>
+
+            <p>
+                Para garantir consistência temporal, o cálculo de participação
+                utilizou os modais com séries completas: ônibus, metrô, trem,
+                transporte hidroviário e transporte aeroviário. O bonde foi
+                excluído desse cálculo devido à presença de valores ausentes
+                em determinados anos.
+            </p>
+
+            <figure>
+                <img
+                    src="assets/participacao_modais.png"
+                    alt="Participação relativa dos modais no total de passageiros"
+                >
+
+                <figcaption>
+                    Figura 4 — Participação dos modais no total de passageiros.
+                </figcaption>
+            </figure>
+
+            <p>
+                O ônibus permaneceu como o modal dominante durante todo o
+                período, porém sua participação relativa apresentou redução
+                gradual ao longo das décadas.
+            </p>
+
+            <p>
+                Em sentido contrário, o metrô ampliou sua participação no
+                sistema, tornando-se progressivamente mais relevante na
+                composição do transporte de passageiros.
+            </p>
+
+            <p>
+                O trem também apresentou ganho de participação em determinados
+                períodos, embora tenha registrado redução nos anos mais recentes.
+            </p>
+
+
+            <h3>3.4 Ruptura observada em 2020</h3>
+
+            <p>
+                A terceira pergunta de pesquisa investigou o impacto da forte
+                ruptura observada em 2020 e a recuperação posterior dos
+                diferentes modais.
+            </p>
+
+            <p>
+                Entre 2019 e 2020, todos os modais apresentaram redução no
+                número de passageiros.
+            </p>
+
+            <p>
+                A maior queda proporcional ocorreu no bonde, com redução de
+                aproximadamente 66,7%. O transporte hidroviário apresentou
+                queda de aproximadamente 58,4%, enquanto o aeroviário registrou
+                redução próxima de 57,0%.
+            </p>
+
+            <p>
+                O metrô apresentou redução de aproximadamente 52,9%, o ônibus
+                de 45,1% e o trem de 40,2%.
+            </p>
+
+            <figure>
+                <img
+                    src="assets/variacao_2019_2020.png"
+                    alt="Variação percentual de passageiros entre 2019 e 2020"
+                >
+
+                <figcaption>
+                    Figura 5 — Variação percentual de passageiros entre 2019 e 2020.
+                </figcaption>
+            </figure>
+
+
+            <h3>3.5 Recuperação até 2025</h3>
+
+            <p>
+                A recuperação dos diferentes modais foi avaliada utilizando
+                2019 como referência igual a 100.
+            </p>
+
+            <p>
+                Em 2025, o transporte aeroviário já havia ultrapassado o nível
+                registrado em 2019, atingindo aproximadamente 107,7% do valor
+                anterior à ruptura.
+            </p>
+
+            <p>
+                O bonde também apresentou valor superior ao nível de 2019,
+                alcançando aproximadamente 172,8%. Entretanto, esse resultado
+                deve ser interpretado com cautela devido ao baixo volume
+                absoluto desse modal.
+            </p>
+
+            <p>
+                Os demais modais ainda permaneciam abaixo do nível de 2019.
+                O metrô atingiu aproximadamente 74,2%, o ônibus 66,7%,
+                o transporte hidroviário 65,7% e o trem 54,7%.
+            </p>
+
+            <figure>
+                <img
+                    src="assets/recuperacao_2025.png"
+                    alt="Nível de recuperação dos modais em 2025 em relação a 2019"
+                >
+
+                <figcaption>
+                    Figura 6 — Nível de recuperação em 2025 em relação a 2019.
+                </figcaption>
+            </figure>
+
+
+            <h3>3.6 Correlação entre os modais</h3>
+
+            <p>
+                A matriz de correlação foi utilizada para investigar a
+                associação linear entre as séries históricas dos diferentes
+                modais.
+            </p>
+
+            <p>
+                A maior correlação positiva foi observada entre metrô e
+                transporte aeroviário, com aproximadamente 0,93. Também foram
+                identificadas correlações elevadas entre metrô e trem,
+                aproximadamente 0,86, e entre trem e transporte aeroviário,
+                aproximadamente 0,81.
+            </p>
+
+            <p>
+                O transporte por ônibus apresentou correlação positiva elevada
+                com o transporte hidroviário, também próxima de 0,81.
+            </p>
+
+            <p>
+                O bonde apresentou comportamento distinto, incluindo correlação
+                negativa moderada com o transporte por ônibus, de aproximadamente
+                -0,47.
+            </p>
+
+            <figure>
+                <img
+                    src="assets/correlacao_modais.png"
+                    alt="Matriz de correlação entre os modais de transporte"
+                >
+
+                <figcaption>
+                    Figura 7 — Correlação entre os modais de transporte.
+                </figcaption>
+            </figure>
+
+            <p>
+                As correlações identificadas representam associações estatísticas
+                entre as séries e não devem ser interpretadas como relações de
+                causa e efeito.
+            </p>
+
+
+            <h3>3.7 Variabilidade dos modais</h3>
+
+            <p>
+                Para comparar a estabilidade das séries independentemente das
+                diferenças de escala, foi calculado o coeficiente de variação.
+            </p>
+
+            <p>
+                O transporte por ônibus apresentou o menor coeficiente de
+                variação, aproximadamente 25,3%, indicando maior estabilidade
+                relativa ao longo do período analisado.
+            </p>
+
+            <p>
+                O transporte hidroviário apresentou coeficiente próximo de
+                27,0%, enquanto trem e metrô apresentaram aproximadamente
+                32,5% e 34,3%, respectivamente.
+            </p>
+
+            <p>
+                O transporte aeroviário apresentou maior variabilidade,
+                aproximadamente 42,4%, enquanto o bonde apresentou o maior
+                coeficiente de variação, aproximadamente 58,2%.
+            </p>
+
+            <figure>
+                <img
+                    src="assets/coeficiente_variacao.png"
+                    alt="Coeficiente de variação dos modais de transporte"
+                >
+
+                <figcaption>
+                    Figura 8 — Coeficiente de variação dos modais de transporte.
+                </figcaption>
+            </figure>
+
+        </section>
+
+
+        <!-- CONCLUSÃO -->
+
+        <section>
+
+            <h2>4. Conclusão</h2>
+
+            <p>
+                Este estudo analisou a evolução do movimento de passageiros
+                nos principais modais de transporte do Município do Rio de Janeiro
+                entre 1995 e 2025, utilizando dados públicos disponibilizados
+                pelo Data.Rio.
+            </p>
+
+            <p>
+                Os resultados mostraram que o transporte por ônibus permaneceu
+                como o modal de maior volume absoluto durante todo o período
+                analisado. Entretanto, sua participação relativa apresentou
+                redução ao longo das três décadas, enquanto o metrô ampliou
+                sua importância na composição do transporte de passageiros.
+            </p>
+
+            <p>
+                A análise temporal também evidenciou uma ruptura acentuada em
+                2020, observada em todos os modais. A intensidade dessa redução,
+                entretanto, não foi uniforme. Da mesma forma, o processo de
+                recuperação ocorreu em ritmos diferentes.
+            </p>
+
+            <p>
+                Em 2025, o transporte aeroviário e o bonde já apresentavam
+                valores superiores aos registrados em 2019, enquanto ônibus,
+                metrô, trem e transporte hidroviário ainda permaneciam abaixo
+                dos respectivos níveis anteriores à ruptura.
+            </p>
+
+            <p>
+                As análises de correlação e dispersão complementaram a avaliação
+                temporal. Foram identificadas associações positivas elevadas
+                entre algumas séries, especialmente entre metrô e transporte
+                aeroviário, além de diferenças relevantes no grau de variabilidade
+                dos modais.
+            </p>
+
+            <p>
+                Como limitações do estudo, destaca-se a presença de valores
+                ausentes na série histórica do bonde e a utilização de dados
+                agregados anualmente. Essa granularidade impossibilita análises
+                mais detalhadas relacionadas à sazonalidade, distribuição
+                espacial dos deslocamentos ou perfil dos passageiros.
+            </p>
+
+            <p>
+                Como trabalhos futuros, a análise poderá ser ampliada com a
+                incorporação de variáveis como população, tarifas, extensão das
+                redes de transporte, indicadores econômicos e outros fatores
+                históricos ou urbanos que possam contribuir para a compreensão
+                das transformações observadas.
+            </p>
+
+        </section>
+
+
+        <!-- FAIR -->
+
+       <section>
+
+            <h2>5. Disponibilidade dos Dados e Declaração FAIR</h2>
+
+            <p>
+                Os dados utilizados neste trabalho são provenientes do
+                Data.Rio, portal de dados públicos da Prefeitura da Cidade
+                do Rio de Janeiro.
+            </p>
+
+            <p>
+                O projeto foi estruturado considerando os princípios FAIR
+                (Findable, Accessible, Interoperable e Reusable), buscando
+                facilitar a localização, o acesso, a compreensão e a
+                reutilização dos dados e códigos produzidos.
+            </p>
+
+
+            <h3>5.1 Findable — Localizável</h3>
+
+            <p>
+                O repositório apresenta documentação no arquivo
+                <code>README.md</code>, identificação do projeto, autoria,
+                palavras-chave, fonte original dos dados e organização
+                padronizada dos arquivos.
+            </p>
+
+
+            <h3>5.2 Accessible — Acessível</h3>
+
+            <p>
+                O código-fonte, os dados processados, o notebook de análise
+                e este artigo são disponibilizados por meio de um repositório
+                público no GitHub. O artigo acadêmico é publicado utilizando
+                o GitHub Pages.
+            </p>
+
+
+            <h3>5.3 Interoperable — Interoperável</h3>
+
+            <p>
+                Os dados tratados são disponibilizados nos formatos CSV e
+                Parquet. Além disso, o arquivo
+                <code>data/data_dictionary.md</code> apresenta a descrição,
+                o tipo e a unidade de medida das variáveis utilizadas.
+            </p>
+
+
+            <h3>5.4 Reusable — Reutilizável</h3>
+
+            <p>
+                O projeto apresenta documentação do processo de tratamento
+                dos dados, arquivo de dependências do ambiente Python e
+                licença de uso do código, permitindo que outros usuários
+                reproduzam ou adaptem a análise.
+            </p>
+
+
+            <h3>5.5 Reprodução da análise</h3>
+
+            <p>
+                Após realizar o clone do repositório, o ambiente poderá ser
+                preparado utilizando os seguintes comandos:
+            </p>
+
+            <pre><code>
+        git clone URL-DO-REPOSITORIO
+
+        cd transporte-passageiros-rio
+
+        python -m venv .venv
+
+        pip install -r requirements.txt
+
+        python src/etl.py
+            </code></pre>
+
+            <p>
+                Após a execução do pipeline de ETL, os dados tratados estarão
+                disponíveis em <code>data/processed/</code> e poderão ser
+                utilizados no notebook
+                <code>notebooks/analise_exploratoria.ipynb</code>.
+            </p>
+
+        </section>
+
+
+        <!-- REFERÊNCIAS -->
+
+        <section>
+
+            <h2>6. Referências</h2>
+
+            <p>
+                DATA.RIO. <strong>Movimento de passageiros segundo os
+                transportes rodoviário, ferroviário, hidroviário e aeroviário
+                no Município do Rio de Janeiro entre 1995 e 2025.</strong>
+                Prefeitura da Cidade do Rio de Janeiro.
+            </p>
+
+            <p>
+                MCKINNEY, Wes. <strong>Python for Data Analysis.</strong>
+                3. ed. Sebastopol: O'Reilly Media, 2022.
+            </p>
+
+            <p>
+                PANDAS DEVELOPMENT TEAM.
+                <strong>pandas documentation.</strong>
+                Documentação oficial da biblioteca pandas.
+            </p>
+
+            <p>
+                HUNTER, John D.
+                <strong>Matplotlib: A 2D Graphics Environment.</strong>
+                Computing in Science &amp; Engineering,
+                v. 9, n. 3, p. 90–95, 2007.
+            </p>
+
+            <p>
+                WASKOM, Michael L.
+                <strong>Seaborn: statistical data visualization.</strong>
+                Journal of Open Source Software,
+                v. 6, n. 60, 3021, 2021.
+            </p>
+
+        </section>
+
+
+        <footer>
+
+            Projeto acadêmico — Linguagens de Programação<br>
+            Bacharelado em Sistemas de Informação
+
+        </footer>
+
+    </main>
+
+</body>
+
+</html>
