@@ -161,7 +161,7 @@ Esses valores não foram substituídos por zero, pois representam ausência de i
 ### 1. Clonar o repositório
 
 ```bash
-git clone URL-DO-REPOSITORIO
+git clone https://github.com/LauraRMota/transporte-passageiros-rio
 ```
 
 ### 2. Acessar a pasta do projeto
@@ -237,7 +237,7 @@ O artigo acadêmico desenvolvido para o projeto está localizado em:
 docs/index.html
 ```
 
-Após a publicação no GitHub Pages, o endereço público do artigo será adicionado nesta seção.
+(https://laurarmota.github.io/transporte-passageiros-rio/)
 
 ---
 
