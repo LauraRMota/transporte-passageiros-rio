@@ -1,3 +1,7 @@
+Instituição: Centro Universitário La Salle do Rio de Janeiro — Unilasalle-RJ<br>
+Período: 6º período<br>
+Semestre: 2026.2
+
 # Análise da Evolução do Transporte de Passageiros no Município do Rio de Janeiro
 
 ## Sobre o projeto
