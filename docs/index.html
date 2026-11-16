@@ -190,23 +190,26 @@
                 </p>
 
                 <p>
-                    A análise contempla os transportes por ônibus, metrô,
-                    trem, bonde, hidroviário e aeroviário. Os dados foram
-                    submetidos a um pipeline de extração, transformação e
-                    carregamento em Python, incluindo tratamento de
-                    cabeçalhos, padronização de variáveis, conversão de tipos
-                    e tratamento de valores ausentes.
+                    A análise contempla os transportes por ônibus, metrô, trem, 
+                    bonde, hidroviário e aeroviário. Os dados foram submetidos 
+                    a um pipeline de extração, transformação e carregamento 
+                    desenvolvido em Python, incluindo tratamento de cabeçalhos, 
+                    padronização de variáveis, conversão de tipos e tratamento de 
+                    valores ausentes. Para o processamento e a análise dos dados, 
+                    foram utilizadas as bibliotecas Pandas e NumPy, enquanto Matplotlib 
+                    e Seaborn foram empregadas na construção das visualizações estatísticas. 
+                    A biblioteca Plotly foi utilizada para a criação de visualizações interativas. 
+                    Além disso, OpenPyXL foi utilizada para a leitura da planilha original em 
+                    Excel e PyArrow para a persistência dos dados processados em formato Parquet.
                 </p>
 
                 <p>
-                    Foram aplicadas técnicas de estatística descritiva,
-                    análise temporal, participação relativa, correlação e
-                    medidas de dispersão. Os resultados evidenciam mudanças
-                    importantes na composição do transporte de passageiros,
-                    incluindo redução da participação relativa do transporte
-                    por ônibus, crescimento do metrô e uma forte ruptura nas
-                    séries em 2020, seguida por diferentes padrões de
-                    recuperação.
+                    Foram aplicadas técnicas de estatística descritiva, análise temporal, 
+                    participação relativa, correlação e medidas de dispersão. Os resultados 
+                    evidenciam mudanças importantes na composição do transporte de passageiros, 
+                    incluindo redução da participação relativa do transporte por ônibus, 
+                    crescimento do metrô e uma forte ruptura nas séries em 2020, seguida por 
+                    diferentes padrões de recuperação.
                 </p>
 
                 <p class="palavras-chave">
@@ -377,7 +380,7 @@
             </p>
 
 
-            <h3>2.5 Exemplo do processamento</h3>
+            <h3>Exemplo do processamento</h3>
 
             <pre><code>
             df = pd.read_excel(
@@ -412,7 +415,7 @@
             </p>
 
 
-            <h3>2.6 Persistência dos dados processados</h3>
+            <h3>2.5 Persistência dos dados processados</h3>
 
             <p>
                 A versão tratada da base foi armazenada em dois formatos:
